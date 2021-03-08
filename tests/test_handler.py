@@ -2,7 +2,7 @@ from moto import mock_events
 import boto3
 from pydantic import BaseModel
 
-from event_handler import EventHandler
+from eventbridge_handler import EventHandler
 
 
 class GenericModel(BaseModel):
