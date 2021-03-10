@@ -18,11 +18,14 @@ class EventHandler:
         event_bus: str = None,
     ) -> dict:
         event_bus = self.event_bus if not event_bus else event_bus
+        detail_type = (
+            f"{event_bus}:{self.prefix}" if not detail_type else detail_type,
+        )
         event = dict(
             Source=sender,
             Detail=event.json(),
             Resources=extra_resources,
-            DetailType=f"{event_bus}:{self.prefix}",
+            DetailType=detail_type,
             EventBusName=event_bus,
         )
         send_event = self.session.client("events").put_events(
