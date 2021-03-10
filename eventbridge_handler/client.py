@@ -18,9 +18,7 @@ class EventHandler:
         event_bus: str = None,
     ) -> dict:
         event_bus = self.event_bus if not event_bus else event_bus
-        detail_type = (
-            f"{event_bus}:{self.prefix}" if not detail_type else detail_type,
-        )
+        detail_type = f"{event_bus}:{self.prefix}" if not detail_type else detail_type
         event = dict(
             Source=sender,
             Detail=event.json(),
